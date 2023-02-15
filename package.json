@@ -4,16 +4,20 @@
 	"version": "1.0.0",
 	"description": "A Typescript client for the Crossref API.",
 	"keywords": [
-		"Thingiverse"
+		"Crossref"
 	],
 	"author": "James Gopsill",
 	"license": "MIT",
 	"private": false,
 	"repository": {
-		"type": "",
-		"url": ""
+		"type": "github",
+		"url": "https://github.com/jamesgopsill/crossref-client"
 	},
-	"homepage": "",
+	"homepage": "https://jamesgopsill.github.io/crossref-client/",
+	"funding": {
+		"type": "individual",
+		"url": "https://github.com/sponsors/jamesgopsill"
+	},
 	"engines": {
 		"node": ">=19.0.0"
 	},
