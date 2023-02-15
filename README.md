@@ -1,6 +1,6 @@
 # Crossref API Typescript Client
 
-The client has been developed as part of a research programme investigating agent-based manufacturing systems. It is isomorphic capable of running on server (Node.js) and client-side (Browser) applications.
+The client has been developed as part of a research programme investigating agent-based manufacturing systems. The client has been used in our systematic literature reviews. It is isomorphic capable of running on server (Node.js) and client-side (Browser) applications.
 
 ## Using crossref-client
 
@@ -17,20 +17,27 @@ You can then use in your code:
 ```typescript
 import { CrossrefClient } from "@jamesgopsill/crossref-client"
 
-// Create a new client. (Only setup for app tokens at the moment)
 const client = new CrossrefClient()
 
+const search: QueryWorksParams = {
+	queryAuthor: "Richard Feynman",
+}
+const r = await c.works(search)
+if (r.ok && r.status == 200) console.log(r.content)
 ```
-
 
 **Javascript (CJS)**
 
 ```javascript
-const { CrossrefClient } = require("@jamesgopsill/octoprint-client")
+const { CrossrefClient } = require("@jamesgopsill/crossref-client")
 
-// Create a new client. (Only setup for app tokens at the moment)
 const client = new CrossrefClient()
 
+const search = {
+	queryAuthor: "Richard Feynman",
+}
+const r = await c.works(search)
+if (r.ok && r.status == 200) console.log(r.content)
 ```
 
 ## Client Docs

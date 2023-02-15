@@ -38,6 +38,5 @@ test(`keysToDotsAndDashes`, () => {
 		"message-type": "b",
 		"message-version": "c",
 	}
-	console.log(arr)
 	expect(arr).toEqual(correct)
 })
