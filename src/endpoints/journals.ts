@@ -12,7 +12,7 @@ export async function journals(
 	this: CrossrefClient,
 	query: string,
 	rows: number = 20,
-	offset: number = 0
+	offset: number = 0,
 ) {
 	const url = `${this._url}/journals`
 	let params: SearchQueryParams = { query, rows, offset }
@@ -27,7 +27,7 @@ export async function journal(this: CrossrefClient, issn: string) {
 export async function journalWorks(
 	this: CrossrefClient,
 	issn: string,
-	query: QueryWorksParams | undefined = undefined
+	query: QueryWorksParams | undefined = undefined,
 ) {
 	const url = `${this._url}/journals/${issn}/works`
 	return this._fetch<Items<Works>>("GET", url, query)

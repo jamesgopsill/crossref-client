@@ -1,17 +1,21 @@
-import { CrossrefClient } from "../src"
+import assert from "node:assert"
+import test, { before, describe } from "node:test"
+import { CrossrefClient } from "../src/index.js"
 
-let c: CrossrefClient
+describe(`prefix`, { concurrency: 2 }, () => {
+	let c: CrossrefClient
 
-beforeAll(() => {
-	c = new CrossrefClient()
-})
+	before(() => {
+		c = new CrossrefClient()
+	})
 
-test(`GET /prefix/:prefix/works`, async () => {
-	const r = await c.prefixWorks("10.1016")
-	expect(r.ok).toBe(true)
-})
+	test(`GET /prefix/:prefix/works`, async () => {
+		const r = await c.prefixWorks("10.1016")
+		assert.strictEqual(r.ok, true, r.statusText)
+	})
 
-test(`GET /prefix/:prefix`, async () => {
-	const r = await c.prefix("10.1016")
-	expect(r.ok).toBe(true)
+	test(`GET /prefix/:prefix`, async () => {
+		const r = await c.prefix("10.1016")
+		assert.strictEqual(r.ok, true, r.statusText)
+	})
 })

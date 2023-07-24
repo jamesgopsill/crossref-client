@@ -23,7 +23,7 @@ export async function work(this: CrossrefClient, doi: string) {
 
 export async function works(
 	this: CrossrefClient,
-	query: QueryWorksParams | undefined = undefined
+	query: QueryWorksParams | undefined = undefined,
 ) {
 	const url = `${this._url}/works`
 	return this._fetch<Items<Works>>("GET", url, query)

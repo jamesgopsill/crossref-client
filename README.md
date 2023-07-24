@@ -10,19 +10,33 @@ To install the package, use the following code. I am aiming to put it onto npm s
 pnpm install @jamesgopsill/crossref-client
 ```
 
-You can then use in your code:
+You can then use it in your code like so (see the `examples` folder for more implementations):
 
-**Typescript / Javascript (ESM)**
+**Typescript**
 
 ```typescript
-import { CrossrefClient } from "@jamesgopsill/crossref-client"
+import { CrossrefClient, QueryWorksParams } from "@jamesgopsill/crossref-client"
 
 const client = new CrossrefClient()
 
 const search: QueryWorksParams = {
 	queryAuthor: "Richard Feynman",
 }
-const r = await c.works(search)
+const r = await client.works(search)
+if (r.ok && r.status == 200) console.log(r.content)
+```
+
+**Javascript (ESM)**
+
+```javascript
+import { CrossrefClient } from "@jamesgopsill/crossref-client"
+
+const client = new CrossrefClient()
+
+const search = {
+	queryAuthor: "Richard Feynman",
+}
+const r = await client.works(search)
 if (r.ok && r.status == 200) console.log(r.content)
 ```
 
@@ -36,11 +50,12 @@ const client = new CrossrefClient()
 const search = {
 	queryAuthor: "Richard Feynman",
 }
-const r = await c.works(search)
-if (r.ok && r.status == 200) console.log(r.content)
+client.works(search).then((r) => {
+	if (r.ok && r.status == 200) console.log(r.content)
+})
 ```
 
-## Client Docs
+## Documentation
 
 The docs have been produced using [TypeDoc](https://typedoc.org/) and can be accessed [here](https://jamesgopsill.github.io/crossref-client/). More details on the API can be found at [Crossref API](https://api.crossref.org/swagger-ui/index.html).
 

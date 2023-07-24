@@ -16,7 +16,7 @@ export async function types(
 	this: CrossrefClient,
 	query: string,
 	rows: number = 20,
-	offset: number = 0
+	offset: number = 0,
 ) {
 	const url = `${this._url}/types/`
 	const params = {
@@ -30,7 +30,7 @@ export async function types(
 export async function typeWorks(
 	this: CrossrefClient,
 	id: string,
-	query: QueryWorksParams | undefined = undefined
+	query: QueryWorksParams | undefined = undefined,
 ) {
 	const url = `${this._url}/types/${id}/works`
 	return this._fetch<Items<Works>>("GET", url, query)

@@ -6,7 +6,7 @@ export async function fetchIt<T>(
 	this: CrossrefClient,
 	method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH",
 	url: string,
-	params: { [k: string]: any } | undefined = undefined
+	params: { [k: string]: any } | undefined = undefined,
 ) {
 	let config: any = {
 		method,

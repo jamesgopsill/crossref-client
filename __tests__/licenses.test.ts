@@ -1,12 +1,15 @@
-import { CrossrefClient } from "../src"
+import assert from "node:assert"
+import test, { before, describe } from "node:test"
+import { CrossrefClient } from "../src/index.js"
 
-let c: CrossrefClient
+describe(`licenses`, { concurrency: 1 }, () => {
+	let c: CrossrefClient
 
-beforeAll(() => {
-	c = new CrossrefClient()
-})
-
-test(`GET /licenses`, async () => {
-	const r = await c.licenses("creative")
-	expect(r.ok).toBe(true)
+	before(() => {
+		c = new CrossrefClient()
+	})
+	test(`GET /licenses`, async () => {
+		const r = await c.licenses("creative")
+		assert.strictEqual(r.ok, true, r.statusText)
+	})
 })

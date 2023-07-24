@@ -1,6 +1,7 @@
 node_modules/
 docs/
 dist/
+tmp/
 
 *.tsbuildinfo
 .DS_Store

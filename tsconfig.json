@@ -1,13 +1,25 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
-	"extends": "@tsconfig/node18-strictest-esm/tsconfig.json",
-	"include": ["src"],
+	"exclude": ["dist", "docs", "tmp", "examples/**/*"],
 	"compilerOptions": {
-		"lib": ["DOM", "ES2022"],
-		"outDir": "dist/esm",
-		"rootDir": "src",
-		"declaration": true,
-		"newLine": "LF",
-		"moduleResolution": "node16"
+		"module": "ES2022",
+		"moduleResolution": "NodeNext",
+		"target": "ES2022",
+		// tsconfig/bases strictest
+		"strict": true,
+		"allowUnusedLabels": false,
+		"allowUnreachableCode": false,
+		"exactOptionalPropertyTypes": true,
+		"noFallthroughCasesInSwitch": true,
+		"noImplicitOverride": true,
+		"noImplicitReturns": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUncheckedIndexedAccess": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"checkJs": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
 	}
 }

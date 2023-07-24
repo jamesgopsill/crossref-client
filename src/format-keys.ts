@@ -51,7 +51,7 @@ const toCamel = (s: string) => {
 const toDotsAndDashes = (s: string) => {
 	s = s.replace(
 		/query[A-Z]/g,
-		(match) => `query.${match.slice(-1).toLowerCase()}`
+		(match) => `query.${match.slice(-1).toLowerCase()}`,
 	)
 	s = s.replace(/[A-Z]/g, (letter) => `-${letter.toLowerCase()}`)
 	return s

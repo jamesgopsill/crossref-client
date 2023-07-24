@@ -12,7 +12,7 @@ import type {
 export async function fundersWorks(
 	this: CrossrefClient,
 	id: string,
-	query: QueryWorksParams | undefined = undefined
+	query: QueryWorksParams | undefined = undefined,
 ) {
 	const url = `${this._url}/funders/${id}/works`
 	return this._fetch<Items<Works>>("GET", url, query)
@@ -28,7 +28,7 @@ export async function funders(
 	query: string,
 	location: string = "",
 	rows: number = 20,
-	offset: number = 0
+	offset: number = 0,
 ) {
 	const url = `${this._url}/funders/`
 	let params: SearchQueryParams = { query, rows, offset }

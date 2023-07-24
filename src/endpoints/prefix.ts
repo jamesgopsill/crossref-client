@@ -10,7 +10,7 @@ import type {
 export async function prefixWorks(
 	this: CrossrefClient,
 	prefix: string,
-	query: QueryWorksParams | undefined = undefined
+	query: QueryWorksParams | undefined = undefined,
 ) {
 	const url = `${this._url}/prefixes/${prefix}/works`
 	return this._fetch<Items<Works>>("GET", url, query)

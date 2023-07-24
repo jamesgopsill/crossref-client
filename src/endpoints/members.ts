@@ -10,7 +10,7 @@ import type {
 export async function memberWorks(
 	this: CrossrefClient,
 	id: string,
-	query: QueryWorksParams | undefined = undefined
+	query: QueryWorksParams | undefined = undefined,
 ) {
 	const url = `${this._url}/members/${id}/works`
 	return this._fetch<Items<Works>>("GET", url, query)
