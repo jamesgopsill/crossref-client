@@ -36,7 +36,7 @@
 	],
 	"scripts": {
 		"test": "tsc --noEmit && node --loader tsx --trace-warnings --no-warnings --test __tests__/*.test.ts",
-		"build": "rm -rf dist && tsc --project tsconfig.build.esm.json && tsc --project tsconfig.build.cjs.json && node --loader tsx --trace-warnings --no-warnings utils/create-package-json.ts",
+		"build:dist": "rm -rf dist && tsc --project tsconfig.build.esm.json && tsc --project tsconfig.build.cjs.json && node --loader tsx --trace-warnings --no-warnings utils/create-package-json.ts",
 		"build:docs": "typedoc",
 		"format": "prettier --write .",
 		"example:ts": "node --loader tsx --trace-warnings --no-warnings examples/ts/query-works.ts",
