@@ -1,7 +1,7 @@
 {
 	"$schema": "https://json.schemastore.org/package.json",
 	"name": "@jamesgopsill/crossref-client",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"description": "A Typescript client for the Crossref API.",
 	"keywords": [
 		"Crossref"
@@ -35,20 +35,20 @@
 		"dist/**/*"
 	],
 	"scripts": {
-		"test": "tsc --noEmit && node --loader tsx --trace-warnings --no-warnings --test __tests__/*.test.ts",
-		"build:dist": "rm -rf dist && tsc --project tsconfig.build.esm.json && tsc --project tsconfig.build.cjs.json && node --loader tsx --trace-warnings --no-warnings utils/create-package-json.ts",
+		"test": "tsc --noEmit && node --import tsx --test __tests__/*.test.ts",
+		"build:dist": "rm -rf dist && tsc --project tsconfig.build.esm.json && tsc --project tsconfig.build.cjs.json && node --import tsx utils/create-package-json.ts",
 		"build:docs": "typedoc",
 		"format": "prettier --write .",
-		"example:ts": "node --loader tsx --trace-warnings --no-warnings examples/ts/query-works.ts",
+		"example:ts": "node --import tsx examples/ts/query-works.ts",
 		"example:mjs": "node examples/mjs/query-works.mjs",
 		"example:cjs": "node examples/cjs/query-works.cjs"
 	},
 	"devDependencies": {
-		"@types/node": "^20.4.4",
-		"prettier": "^3.0.0",
-		"prettier-plugin-organize-imports": "^3.2.3",
-		"tsx": "^3.12.7",
+		"@types/node": "^20.10.5",
+		"prettier": "^3.1.1",
+		"prettier-plugin-organize-imports": "^3.2.4",
+		"tsx": "^3.14.0",
 		"typedoc": "^0.24.8",
-		"typescript": "^5.1.6"
+		"typescript": "^5.3.3"
 	}
 }

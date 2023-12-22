@@ -6,21 +6,21 @@ describe(`types`, { concurrency: 3 }, () => {
 	let c: CrossrefClient
 
 	before(() => {
-		c = new CrossrefClient()
+		c = new CrossrefClient("", "", true)
 	})
 
 	test(`GET /types`, async () => {
-		const r = await c.types("")
-		assert.strictEqual(r.ok, true, r.statusText)
+		const { ok, statusText } = await c.types("")
+		assert.strictEqual(ok, true, statusText)
 	})
 
 	test(`GET /types/:id`, async () => {
-		const r = await c.type("book-section")
-		assert.strictEqual(r.ok, true, r.statusText)
+		const { ok, statusText } = await c.type("book-section")
+		assert.strictEqual(ok, true, statusText)
 	})
 
 	test(`GET /types/:id/works`, async () => {
-		const r = await c.typeWorks("book-section")
-		assert.strictEqual(r.ok, true, r.statusText)
+		const { ok, statusText } = await c.typeWorks("book-section")
+		assert.strictEqual(ok, true, statusText)
 	})
 })

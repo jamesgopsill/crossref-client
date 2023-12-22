@@ -6,21 +6,21 @@ describe(`funders`, { concurrency: 3 }, () => {
 	let c: CrossrefClient
 
 	before(() => {
-		c = new CrossrefClient()
+		c = new CrossrefClient("", "", true)
 	})
 
 	test(`GET /funders`, async () => {
-		const r = await c.funders("epsrc")
-		assert.strictEqual(r.ok, true, r.statusText)
+		const { ok, statusText } = await c.funders("epsrc")
+		assert.strictEqual(ok, true, statusText)
 	})
 
 	test(`GET /funder/:id`, async () => {
-		const r = await c.funder("100000047")
-		assert.strictEqual(r.ok, true, r.statusText)
+		const { ok, statusText } = await c.funder("100000047")
+		assert.strictEqual(ok, true, statusText)
 	})
 
 	test(`GET /funder/:id/works`, async () => {
-		const r = await c.fundersWorks("100000047")
-		assert.strictEqual(r.ok, true, r.statusText)
+		const { ok, statusText } = await c.fundersWorks("100000047")
+		assert.strictEqual(ok, true, statusText)
 	})
 })

@@ -1,13 +1,17 @@
+import type { CrossrefClient, HttpResponse } from "../index.js"
 import { keysToCamel, keysToDotsAndDashes } from "./format-keys.js"
-import type { CrossrefClient, HttpResponse } from "./index.js"
 import { parseDates } from "./parse-dates.js"
 
-export async function fetchIt<T>(
+export async function _fetch<T>(
 	this: CrossrefClient,
 	method: "GET" | "POST" | "PUT" | "DELETE" | "PATCH",
 	url: string,
 	params: { [k: string]: any } | undefined = undefined,
 ) {
+	if (this._debug) {
+		console.log(`CrossrefClient._fetch: ${url}`)
+	}
+
 	let config: any = {
 		method,
 		mode: "cors",
@@ -44,7 +48,26 @@ export async function fetchIt<T>(
 
 	const request = new Request(url, config)
 
-	const r = (await fetch(request)) as HttpResponse<T>
+	// Three retriess to catch the ECONNRESET issue that sometimes pops up.
+	try {
+		return await performFetch<T>(request)
+	} catch (e: any) {
+		try {
+			if (this._debug) {
+				console.log("Error fetching. Trying again.")
+			}
+			return await performFetch<T>(request)
+		} catch (e: any) {
+			if (this._debug) {
+				console.log("Error fetching. Trying again.")
+			}
+			return await performFetch<T>(request)
+		}
+	}
+}
+
+async function performFetch<T>(request: Request) {
+	let r = (await fetch(request)) as HttpResponse<T>
 	r.content = undefined
 	if (r.ok && r.status === 200) {
 		if (r.headers.get("Content-Type")?.includes("application/json")) {

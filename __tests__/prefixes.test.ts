@@ -6,16 +6,16 @@ describe(`prefix`, { concurrency: 2 }, () => {
 	let c: CrossrefClient
 
 	before(() => {
-		c = new CrossrefClient()
+		c = new CrossrefClient("", "", true)
 	})
 
 	test(`GET /prefix/:prefix/works`, async () => {
-		const r = await c.prefixWorks("10.1016")
-		assert.strictEqual(r.ok, true, r.statusText)
+		const { ok, statusText } = await c.prefixWorks("10.1016")
+		assert.strictEqual(ok, true, statusText)
 	})
 
 	test(`GET /prefix/:prefix`, async () => {
-		const r = await c.prefix("10.1016")
-		assert.strictEqual(r.ok, true, r.statusText)
+		const { ok, statusText } = await c.prefix("10.1016")
+		assert.strictEqual(ok, true, statusText)
 	})
 })

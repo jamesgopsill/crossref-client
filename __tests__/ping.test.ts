@@ -1,13 +1,13 @@
 import assert from "node:assert"
 import test, { before, describe } from "node:test"
-import { keysToCamel, keysToDotsAndDashes } from "../src/format-keys.js"
 import { CrossrefClient } from "../src/index.js"
+import { keysToCamel, keysToDotsAndDashes } from "../src/utils/format-keys.js"
 
 describe(`Ping`, { concurrency: 3 }, () => {
 	let c: CrossrefClient
 
 	before(() => {
-		c = new CrossrefClient()
+		c = new CrossrefClient("", "", true)
 	})
 
 	test(`Ping`, () => {

@@ -6,21 +6,21 @@ describe(`journals`, { concurrency: 3 }, () => {
 	let c: CrossrefClient
 
 	before(() => {
-		c = new CrossrefClient()
+		c = new CrossrefClient("", "", true)
 	})
 
 	test(`GET /journals`, async () => {
-		const r = await c.journals("engineering")
-		assert.strictEqual(r.ok, true, r.statusText)
+		const { ok, statusText } = await c.journals("engineering")
+		assert.strictEqual(ok, true, statusText)
 	})
 
 	test(`GET /journals`, async () => {
-		const r = await c.journal("2231-3818")
-		assert.strictEqual(r.ok, true, r.statusText)
+		const { ok, statusText } = await c.journal("2231-3818")
+		assert.strictEqual(ok, true, statusText)
 	})
 
 	test(`GET /journals`, async () => {
-		const r = await c.journalWorks("2231-3818")
-		assert.strictEqual(r.ok, true, r.statusText)
+		const { ok, statusText } = await c.journalWorks("2231-3818")
+		assert.strictEqual(ok, true, statusText)
 	})
 })

@@ -6,10 +6,11 @@ describe(`licenses`, { concurrency: 1 }, () => {
 	let c: CrossrefClient
 
 	before(() => {
-		c = new CrossrefClient()
+		c = new CrossrefClient("", "", true)
 	})
+
 	test(`GET /licenses`, async () => {
-		const r = await c.licenses("creative")
-		assert.strictEqual(r.ok, true, r.statusText)
+		const { ok, statusText } = await c.licenses("creative")
+		assert.strictEqual(ok, true, statusText)
 	})
 })
