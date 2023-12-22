@@ -2,8 +2,7 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"exclude": ["dist", "docs", "tmp", "examples/**/*"],
 	"compilerOptions": {
-		"module": "NodeNext",
-		"moduleResolution": "NodeNext",
+		"module": "ESNext",
 		// tsconfig/bases strictest
 		"strict": true,
 		"allowUnusedLabels": false,
