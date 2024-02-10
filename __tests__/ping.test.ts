@@ -3,7 +3,7 @@ import test, { before, describe } from "node:test"
 import { CrossrefClient } from "../src/index.js"
 import { keysToCamel, keysToDotsAndDashes } from "../src/utils/format-keys.js"
 
-describe(`Ping`, { concurrency: 3 }, () => {
+describe(`Ping`, { concurrency: 1 }, () => {
 	let c: CrossrefClient
 
 	before(() => {

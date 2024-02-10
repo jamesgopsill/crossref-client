@@ -2,7 +2,7 @@ import assert from "node:assert"
 import test, { before, describe } from "node:test"
 import { CrossrefClient } from "../src/index.js"
 
-describe(`prefix`, { concurrency: 2 }, () => {
+describe(`prefix`, { concurrency: 1 }, () => {
 	let c: CrossrefClient
 
 	before(() => {

@@ -26,6 +26,26 @@ const r = await client.works(search)
 if (r.ok && r.status == 200) console.log(r.content)
 ```
 
+Selecting fields to return.
+
+```typescript
+import {
+	CrossrefClient,
+	QueryWorksParams,
+	WorkSelectOptions,
+} from "@jamesgopsill/crossref-client"
+
+const client = new CrossrefClient()
+
+const search: QueryWorksParams = {
+	queryAuthor: "Richard Feynman",
+	select: [WorkSelectOptions.CONTENT_DOMAIN],
+	sample: 10,
+}
+const r = await client.works(search)
+if (r.ok && r.status == 200) console.log(r.content)
+```
+
 **Javascript (ESM)**
 
 ```javascript
