@@ -1,4 +1,4 @@
-import type { SortOrder, WorkSortOptions } from "./enums.js"
+import type { SortOrder, WorkSelectOptions, WorkSortOptions } from "./enums.js"
 
 export type HttpResponse<T> =
 	| ({
@@ -18,6 +18,8 @@ export interface SearchQueryParams {
 }
 
 export interface QueryWorksParams {
+	offset?: number
+	order?: SortOrder
 	query?: string
 	queryAffiliation?: string
 	queryAuthor?: string
@@ -39,10 +41,10 @@ export interface QueryWorksParams {
 	queryStandardsBodyName?: string
 	queryTitle?: string
 	queryTranslator?: string
-	sort?: WorkSortOptions
-	order?: SortOrder
 	rows?: number
-	offset?: number
+	sort?: WorkSortOptions
+	select?: WorkSelectOptions[]
+	sample?: number
 }
 
 export interface Item<T> {
@@ -113,59 +115,131 @@ export interface Link {
 	intendedApplication: string
 }
 
-export interface Works {
-	indexed: DateObj
-	referenceCount: number
-	publisher: string
-	issue: string
-	funder: WorksFunder[]
-	contentDomain: {
-		domain: unknown[]
-		crossmarkRestriction: boolean
+export interface DateParts {
+	dateParts: number[][]
+}
+
+export interface WorkUpdate {
+	updated: {
+		dateParts: number[][]
+		dateTime: Date
+		timestamp: number
 	}
-	shortContainerTitle: string[]
 	DOI: string
 	type: string
-	created: DateObj
-	page: string
-	source: string
-	isReferencedByCount: number
-	title: string[]
-	prefix: string
-	volume: string
-	author: Author[]
-	member: string
-	publishedOnline: {
-		dateParts: number[][]
-	}
-	containerTitle: string[]
+	label: string
+}
+
+export interface WorkInstitution {
+	name: string
+	place: string[]
+	department: string[]
+	acronym: string[]
+}
+
+export interface WorkStandardsBody {
+	name: string
+	acronym: string[]
+}
+
+export interface WorkClinicalTrialNumber {
+	clinicalTrialNumber: string
+	registry: string
+	type: string
+}
+
+export interface WorkReview {
+	type: string
+	runningNumber: string
+	revisionRound: string
+	stage: string
+	competingInterestStatement: string
+	recommendation: string
 	language: string
-	link: Link[]
-	deposited: DateObj
-	score: number
-	resource: {
-		primary: { URL: string }
-	}
-	issued: { dateParts: number[][] }
-	referencesCount: 0
-	journalIssue: {
-		issue: number
-		publishedOnline: { dateParts: number[][] }
-	}
-	alternativeId: string[]
-	URL: string
-	ISSN: string[]
-	issnType: IssnType[]
-	subject: string[]
-	published: { dateParts: number[][] }
-	////
-	license?: License[]
-	publishedPrint?: {
-		dateParts: number[][]
-	}
-	updatePolicy?: string
-	reference?: Reference[]
+}
+
+export interface WorkFreeToRead {
+	startDate: DateParts
+	endDate: DateParts
+}
+
+export interface Work {
+	abstract?: string
+	accepted?: DateParts
+	alternativeId?: string[]
+	approved?: DateParts
+	archive?: string[]
+	articleNumber?: string
 	assertion?: Assertion[]
+	author: Author[]
+	chair?: Author[]
+	clinicalTrialNumber?: WorkClinicalTrialNumber[]
+	componentNumber?: string
+	containerTitle?: string[]
+	contentCreated?: DateParts
+	contentDomain: {
+		crossmarkRestriction: boolean
+		domain: unknown[]
+	}
+	contentUpdated: DateParts
+	created: DateObj
+	degree?: string
+	deposited: DateObj
+	DOI: string
+	editionNumber?: string
+	editor?: Author[]
+	freeToRead?: WorkFreeToRead
+	funder: WorksFunder[]
+	groupTitle?: string[]
+	indexed: DateObj
+	institution: WorkInstitution
+	isReferencedByCount: number
+	ISBN?: string[]
+	isbnnType?: IssnType[]
+	ISSN?: string[]
+	issnType?: IssnType[]
+	issue: string
+	issued: DateParts
+	journalIssue?: {
+		issue: number
+		publishedOnline: DateParts
+	}
+	language?: string
+	license?: License[]
+	link: Link[]
+	member: string
+	originalTitle?: string[]
+	page: string
+	partNumber?: string
+	posted?: DateParts
+	prefix: string
+	published?: DateParts
+	publishedOnline?: DateParts
+	publishedOther?: DateParts
+	publishedPrint?: DateParts
+	publisher: string
+	publisherLocation?: string
+	reference?: Reference[]
+	referenceCount: number
+	referencesCount: number
+	relation?: any
+	resource: { primary: { URL: string } }
+	review?: WorkReview
+	score: number
+	shortContainerTitle: string
+	shortTitle?: string[]
+	source: string
+	standardsBody?: WorkStandardsBody[]
+	subject?: string[]
+	subtitle?: string[]
+	subtype?: string
+	title: string[]
+	translator?: Author[]
+	type: string
+	updatePolicy?: string
+	updateTo?: WorkUpdate[]
+	URL: string
+	volume?: string
 }
 
 export interface CoverageType {

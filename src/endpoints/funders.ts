@@ -6,7 +6,7 @@ import type {
 	Items,
 	QueryWorksParams,
 	SearchQueryParams,
-	Works,
+	Work,
 } from "../index.js"
 
 export async function fundersWorks(
@@ -15,7 +15,7 @@ export async function fundersWorks(
 	query: QueryWorksParams | undefined = undefined,
 ) {
 	const url = `${this._url}/funders/${id}/works`
-	return this._fetch<Items<Works>>("GET", url, query)
+	return this._fetch<Items<Work>>("GET", url, query)
 }
 
 export async function funder(this: CrossrefClient, id: string) {

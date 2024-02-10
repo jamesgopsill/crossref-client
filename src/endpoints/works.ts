@@ -4,7 +4,7 @@ import type {
 	Item,
 	Items,
 	QueryWorksParams,
-	Works,
+	Work,
 } from "../index.js"
 
 export async function worksAgency(this: CrossrefClient, doi: string) {
@@ -16,7 +16,7 @@ export async function worksAgency(this: CrossrefClient, doi: string) {
 export async function work(this: CrossrefClient, doi: string) {
 	doi = encodeURI(doi)
 	const url = `${this._url}/works/${doi}`
-	return this._fetch<Item<Works>>("GET", url)
+	return this._fetch<Item<Work>>("GET", url)
 }
 
 export async function works(
@@ -24,5 +24,5 @@ export async function works(
 	query: QueryWorksParams | undefined = undefined,
 ) {
 	const url = `${this._url}/works`
-	return this._fetch<Items<Works>>("GET", url, query)
+	return this._fetch<Items<Work>>("GET", url, query)
 }

@@ -4,7 +4,7 @@ import type {
 	Items,
 	QueryWorksParams,
 	Type,
-	Works,
+	Work,
 } from "../index.js"
 
 export async function type(this: CrossrefClient, id: string) {
@@ -33,5 +33,5 @@ export async function typeWorks(
 	query: QueryWorksParams | undefined = undefined,
 ) {
 	const url = `${this._url}/types/${id}/works`
-	return this._fetch<Items<Works>>("GET", url, query)
+	return this._fetch<Items<Work>>("GET", url, query)
 }

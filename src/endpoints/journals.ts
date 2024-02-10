@@ -5,7 +5,7 @@ import type {
 	Journal,
 	QueryWorksParams,
 	SearchQueryParams,
-	Works,
+	Work,
 } from "../index.js"
 
 export async function journals(
@@ -30,5 +30,5 @@ export async function journalWorks(
 	query: QueryWorksParams | undefined = undefined,
 ) {
 	const url = `${this._url}/journals/${issn}/works`
-	return this._fetch<Items<Works>>("GET", url, query)
+	return this._fetch<Items<Work>>("GET", url, query)
 }

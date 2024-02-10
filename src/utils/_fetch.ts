@@ -8,10 +8,6 @@ export async function _fetch<T>(
 	url: string,
 	params: { [k: string]: any } | undefined = undefined,
 ) {
-	if (this._debug) {
-		console.log(`CrossrefClient._fetch: ${url}`)
-	}
-
 	let config: any = {
 		method,
 		mode: "cors",
@@ -40,10 +36,34 @@ export async function _fetch<T>(
 	if (method === "GET" && typeof params === "object") {
 		url += "?"
 		for (const [k, v] of Object.entries(params)) {
-			url += k + "=" + v + "&"
+			switch (typeof v) {
+				case "string":
+					url += `${k}=${v}&`
+					break
+				case "number":
+					url += `${k}=${v}&`
+					break
+				case "bigint":
+					break
+				case "boolean":
+					break
+				case "symbol":
+					break
+				case "undefined":
+					break
+				case "object":
+					url += `${k}=${v.join(",")}&`
+					break
+				case "function":
+					break
+			}
 		}
 		url = url.slice(0, -1)
 		url = encodeURI(url)
+	}
+
+	if (this._debug) {
+		console.log(`CrossrefClient._fetch: ${url}`)
 	}
 
 	const request = new Request(url, config)

@@ -4,7 +4,7 @@ import type {
 	Items,
 	Member,
 	QueryWorksParams,
-	Works,
+	Work,
 } from "../index.js"
 
 export async function memberWorks(
@@ -13,7 +13,7 @@ export async function memberWorks(
 	query: QueryWorksParams | undefined = undefined,
 ) {
 	const url = `${this._url}/members/${id}/works`
-	return this._fetch<Items<Works>>("GET", url, query)
+	return this._fetch<Items<Work>>("GET", url, query)
 }
 
 export async function member(this: CrossrefClient, id: string) {

@@ -4,7 +4,7 @@ import type {
 	Items,
 	Prefix,
 	QueryWorksParams,
-	Works,
+	Work,
 } from "../index.js"
 
 export async function prefixWorks(
@@ -13,7 +13,7 @@ export async function prefixWorks(
 	query: QueryWorksParams | undefined = undefined,
 ) {
 	const url = `${this._url}/prefixes/${prefix}/works`
-	return this._fetch<Items<Works>>("GET", url, query)
+	return this._fetch<Items<Work>>("GET", url, query)
 }
 
 export async function prefix(this: CrossrefClient, prefix: string) {
